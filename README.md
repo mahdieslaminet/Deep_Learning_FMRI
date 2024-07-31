@@ -44,3 +44,111 @@ This study underscores the potential of deep learning in ASD diagnosis, offering
 1. Clone the repository and navigate to the project directory.
 2. Follow the instructions in the `requirements.txt` to set up your environment.
 3. Run the provided scripts to preprocess the data, train the model, and evaluate the results.
+
+
+
+### Guide Script for ASD Diagnosis with Deep Learning
+
+---
+
+## Introduction
+
+Welcome to the ASD Diagnosis with Deep Learning project! This guide will help you understand the structure of the codebase, how to run the code, and the requirements needed to set up the environment.
+
+### 1. **Setting Up the Environment**
+
+Before running the scripts, ensure you have the required Python libraries installed. You can install them using the following command:
+
+```bash
+pip install -r requirements.txt
+```
+
+### 2. **Directory Structure**
+
+- `data/`: This folder contains the dataset used in the project. Make sure you have the ABIDE dataset properly formatted and stored here.
+- `scripts/`: Contains all the Python scripts for data preprocessing, model training, and evaluation.
+- `models/`: Stores trained models and logs for analysis.
+- `results/`: Includes output files such as evaluation metrics and visualizations.
+
+### 3. **Key Scripts**
+
+#### `data_preprocessing.py`
+
+- **Purpose**: Prepares the ABIDE fMRI data for training. This includes data augmentation, feature extraction, and splitting the data into training and test sets.
+- **Usage**: 
+  ```bash
+  python scripts/data_preprocessing.py --data_dir data/ --output_dir processed_data/
+  ```
+
+#### `train_model.py`
+
+- **Purpose**: Trains the convolutional neural network (CNN) model on the preprocessed data.
+- **Key Parameters**:
+  - `--data_dir`: Directory containing the processed data.
+  - `--epochs`: Number of training epochs.
+  - `--batch_size`: Batch size for training.
+  - `--output_dir`: Directory to save the trained models and logs.
+- **Usage**:
+  ```bash
+  python scripts/train_model.py --data_dir processed_data/ --epochs 50 --batch_size 32 --output_dir models/
+  ```
+
+#### `evaluate_model.py`
+
+- **Purpose**: Evaluates the trained model on the test set and generates performance metrics.
+- **Key Parameters**:
+  - `--model_dir`: Directory containing the trained model.
+  - `--data_dir`: Directory containing the test data.
+  - `--output_dir`: Directory to save evaluation results.
+- **Usage**:
+  ```bash
+  python scripts/evaluate_model.py --model_dir models/ --data_dir processed_data/ --output_dir results/
+  ```
+
+#### `visualize_results.py`
+
+- **Purpose**: Generates visualizations such as confusion matrices, ROC curves, and class activation maps to interpret the model's performance.
+- **Key Parameters**:
+  - `--results_dir`: Directory containing evaluation results.
+  - `--output_dir`: Directory to save the visualizations.
+- **Usage**:
+  ```bash
+  python scripts/visualize_results.py --results_dir results/ --output_dir visualizations/
+  ```
+
+## Requirements
+
+Below is a list of the main Python libraries required for this project:
+
+- `tensorflow` or `torch` (depending on whether you are using TensorFlow or PyTorch)
+- `numpy`
+- `pandas`
+- `scikit-learn`
+- `matplotlib`
+- `seaborn`
+- `nibabel` (for handling neuroimaging data)
+- `scipy`
+
+Create a `requirements.txt` file to list these dependencies:
+
+```
+tensorflow==2.5.0
+numpy==1.21.0
+pandas==1.3.0
+scikit-learn==0.24.2
+matplotlib==3.4.2
+seaborn==0.11.1
+nibabel==3.2.1
+scipy==1.7.0
+```
+
+## Running the Project
+
+1. **Prepare the Data**: Ensure the ABIDE dataset is in the `data/` directory.
+2. **Data Preprocessing**: Run the `data_preprocessing.py` script.
+3. **Model Training**: Train the model using the `train_model.py` script.
+4. **Model Evaluation**: Evaluate the model using `evaluate_model.py`.
+5. **Visualization**: Generate visualizations using `visualize_results.py`.
+
+---
+
